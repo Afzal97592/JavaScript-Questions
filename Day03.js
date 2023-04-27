@@ -42,3 +42,5 @@ console.log(TargetIndexValue([1,2,3,4,5], 5))
     }
  }
  console.log(binarySearch([-5,2,3,4,10], 4))
+
+//   Hello  We are learning git also on new branche 
