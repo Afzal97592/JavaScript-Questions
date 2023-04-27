@@ -156,7 +156,7 @@ function maxProfit(prices){
                 }
             profit = Math.max(profit, prices[i]-minStockPurchasePrices)
         }
-        return profit
+        return profit;
 }
 console.log(maxProfit([7, 1, 5, 3, 6, 4]))
 // console.log(maxProfit([7, 6, 4, 3, 1]))
