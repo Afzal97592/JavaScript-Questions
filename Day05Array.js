@@ -235,5 +235,103 @@ function secondLargestNum(arrNums){
     return secondLargest
 }
 
-console.log(secondLargestNum([10, 5, 10,15,14,15]))
+// console.log(secondLargestNum([10, 5, 10,15,14,15]))
+//  TC : O(n)
+// SC :O(1)
 
+
+
+// --->>>> Ques-2 Rotate Array by K
+// Given an integer array nums, rotate the array to the right by k steps,
+// where k is non negative.
+
+// Input : [1,2,3,4,5,6,7], k=3 ---->>> Output:[5,6,7,1,2,3,4]
+// Input : [-1,-100,3,99], k=2 ---->>> Output:[3,99.-1,-100]
+
+function rotateArray(nums, k){
+    let size = nums.length;
+
+    if(size>k){
+        k = k%size
+        // means if K for this arr [1,2,3,4,5,6,7] is 10 and length of aaray is 8 so after 8 rotation array look like exact same  8 rotation dose not make any sence 10%8 ==> 2 then it will rotate only 2 
+    }
+
+    const rotate = nums.splice(size-k, size); // so splice return the remove elements means 8-3 = 5, 8 so it will start from index 5 and remove all elements after index of 5 ex [1,2,3,4,5,6,7] so it will remove from [5,6,7]
+    nums.unshift(...rotate)
+    return nums
+}
+// console.log(rotateArray([1,2,3,4,5,6,7], 3))
+
+// TC : O(n) + O(n)
+
+
+//  methos 2
+
+function optimsedRotateArray(nums, k){
+    let size = nums.length;
+    if(k>size){
+        k = k%size
+    }
+
+    //  Step-1 first reverse the arr
+    // [1,2,3,4,5,6,7] => [7,6,5,4,3,2,1]
+    // step-2 if k =3 then reverse starting three elements [5,6,7,4,3,2,1]
+// Step-3 then reverse last three elements [5,6,7,1,2,3,4]
+
+reverse(nums, 0, nums.length-1); // Step-1
+reverse(nums, 0, k-1); // step-2
+reverse(nums, k, nums.length-1); // step-3
+return nums
+}
+
+function reverse(nums, left, right){
+    while(left<right){
+        let temp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = temp
+
+        left++
+        right--
+    }
+    
+}
+// console.log(optimsedRotateArray([1,2,3,4,5,6,7], 3))
+// TC-O(n);
+
+// ---->>> Ques - 3 Remove Duplicates from sorted array
+
+// Input:[1,1,2] ----->>>> Output: 2, [1,2]
+// INput:[0,0,1,1,2,2,3,3,4] --->>> Output:5, [0,1,2,3,4]
+
+function removeDuplicate(nums){
+    let newArr = Array.from(new Set(nums))
+    return newArr
+}
+// console.log(removeDuplicate([0,0,1,1,2,2,3,3,4]))
+
+function removeDuplicatesElements(nums){
+    for (let i = 0; i < nums.length-1; i++) {
+      if(nums[i]===nums[i+1]){
+        nums.splice(i+1, 1);
+        i--;
+      }
+        
+    }
+    return nums
+}
+// console.log(removeDuplicatesElements([0,0,1,1,1,2,2,2,3,3,4]))
+
+//  Withput js Methods
+
+function removeDuplicatesNew(nums){
+    if (nums.length === 0) return 0;
+    let i = 0;
+    for(let j = 1; j<nums.length; j++){
+        if(nums[i] !== nums[j]){
+            i++;
+            nums[i] = nums[j]
+        }
+    }
+    return i+1
+}
+console.log(removeDuplicatesNew([0,0,1,1,2,2,3,3,4]))
