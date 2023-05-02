@@ -470,7 +470,33 @@ function maximumDifference(nums) {
     }
     return Array.from(new Set(result))
 };
-console.log(intersection([4,9,5], [9,4,9,8,4]))
+// console.log(intersection([4,9,5], [9,4,9,8,4]))
 
 
+ function reverse(x) {
+      let result = 0; 
+      const limit = 2**31; // integer limit
+      const isNegative = x<0
+      x = Math.abs(x)
+    //   console.log(x)
+
+ while(x>0){
+        result = (result*10)+x%10;
+        x = Math.floor(x/10);
+     }
+     if(result > (limit-1) || result< (-limit)){
+        return 0
+     }else{
+        if(isNegative){
+           return -result
+        }else{
+           return result
+        }
+     }
+
+}
+
+console.log(reverse(-123))
+// reverse(-123)
+// console.log(Math.abs(-123))
 
